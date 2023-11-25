@@ -17,6 +17,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql_tb_nguoidung = "CREATE TABLE NguoiDung (taiKhoan TEXT PRIMARY KEY, matKhau TEXT NOT NULL, email TEXT NOT NULL, loai INTEGER NOT NULL);";
         db.execSQL(sql_tb_nguoidung);
+        String sql_tb_laptop = "CREATE TABLE Laptop (idLaptop INTEGER PRIMARY KEY AUTOINCREMENT, tenLaptop TEXT NOT NULL, thuongHieu TEXT NOT NULL,namSanXuat INTEGER NOT NULL,giaBan INTEGER NOT NULL,moTa TEXT NOT NULL);";
+        db.execSQL(sql_tb_laptop);
 
 
         String data_tb_nguoidung = "INSERT INTO NguoiDung VALUES('admin', '1', 'admin@gmail.com',0)";
@@ -28,6 +30,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion != newVersion) {
             db.execSQL("DROP TABLE NguoiDung");
+            db.execSQL("DROP TABLE Laptop");
             onCreate(db);
         }
 

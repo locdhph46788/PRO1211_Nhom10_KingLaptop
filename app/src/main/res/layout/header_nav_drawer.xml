@@ -2,50 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="#93EBF6"
+    android:orientation="vertical"
     android:padding="10dp">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:src="@drawable/avatar"/>
+        android:src="@drawable/avatar" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
-                android:text="Chào mừng:"
+                android:text="Welcome, "
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="tt"
+                android:text="admin"
                 android:textSize="20sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
-                android:text="Vai trò:"
+                android:text="Vai trò: "
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/tv_vaitro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="Thủ thư"
+                android:text="Admin"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>

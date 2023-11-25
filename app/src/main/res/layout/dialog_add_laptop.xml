@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Thêm Laptop "
+        android:textColor="#03A9F4"
+        android:textSize="30dp" />
+
+
+    <EditText
+        android:id="@+id/edt_thuong_hieu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập thương hiệu" />
+    <EditText
+        android:id="@+id/edt_ten_laptop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên laptop" />
+
+    <EditText
+        android:id="@+id/edt_nam_san_xuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập năm sản xuất" />
+
+
+    <EditText
+        android:id="@+id/edt_gia_ban"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập giá bán" />
+
+    <EditText
+        android:id="@+id/edt_mo_ta"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:hint="Nhập mô tả" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

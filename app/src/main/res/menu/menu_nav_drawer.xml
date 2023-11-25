@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/gio_hang"
-        android:icon="@drawable/ic_giohang"
+        android:icon="@drawable/ic_gio_hang"
         android:title="Giỏ hàng"
         app:showAsAction="always"/>
     <item
@@ -16,7 +16,7 @@
         android:title="Quản lý đơn mua" />
     <item
         android:id="@+id/giai_thuong"
-        android:icon="@drawable/ic_giaithuong"
+        android:icon="@drawable/ic_giai_thuong"
         android:title="Giải thưởng" />
     <item
         android:id="@+id/thong_tin_ca_nhan"

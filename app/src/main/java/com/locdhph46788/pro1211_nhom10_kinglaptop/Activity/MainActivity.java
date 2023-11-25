@@ -1,7 +1,6 @@
 package com.locdhph46788.pro1211_nhom10_kinglaptop.Activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +17,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -82,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 dpToPx(25),
                 dpToPx(25),
                 Gravity.END
-                );
+        );
         params.setMarginEnd(dpToPx(10));
         customView.setLayoutParams(params);
-        Drawable buttonBackground = getResources().getDrawable(R.drawable.ic_giohang);
+        Drawable buttonBackground = getResources().getDrawable(R.drawable.ic_gio_hang);
         customView.setBackground(buttonBackground);
         toolbar.addView(customView);
         customView.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         }
         View headerView = navView.getHeaderView(0);
         TextView navName = (TextView) headerView.findViewById(R.id.tv_name);
-        navName.setText(taiKhoan);
+        navName.setText(taiKhoan + " !");
         TextView navRole = (TextView) headerView.findViewById(R.id.tv_vaitro);
         navView.getMenu().findItem(R.id.gio_hang).setVisible(false);
         if (loai == 0) {
@@ -134,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             navView.getMenu().findItem(R.id.quan_ly_don_mua).setVisible(false);
             navView.getMenu().findItem(R.id.giai_thuong).setVisible(false);
             navView.getMenu().findItem(R.id.thong_tin_ca_nhan).setVisible(false);
+            customView.setVisibility(View.GONE);
 
         } else if (loai == 1) {
             fm.beginTransaction().add(R.id.fragment_container_view, fragTC).commit();
