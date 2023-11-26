@@ -14,7 +14,6 @@ import com.locdhph46788.pro1211_nhom10_kinglaptop.R;
 
 public class QuanLyDonBanFragment extends Fragment {
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
