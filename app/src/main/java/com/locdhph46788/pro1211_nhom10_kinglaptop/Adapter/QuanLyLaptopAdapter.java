@@ -72,7 +72,7 @@ public class QuanLyLaptopAdapter extends RecyclerView.Adapter<QuanLyLaptopAdapte
                         int id = listLaptop.get(holder.getAdapterPosition()).getIdLaptop();
                         boolean check = laptopDAO.deleteLaptop(id);
                         if (check) {
-                            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Xóa thành công !", Toast.LENGTH_SHORT).show();
                             listLaptop.clear();
                             listLaptop.addAll(laptopDAO.getAllLaptop());
                             notifyItemRemoved(holder.getAdapterPosition());
