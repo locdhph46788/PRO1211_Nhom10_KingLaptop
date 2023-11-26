@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navView;
@@ -52,11 +51,9 @@ public class MainActivity extends AppCompatActivity {
     QuanLyLaptopFragment fragQLL;
     QuanLyDonBanFragment fragDB;
     ThemTaiKhoanFragment fragTTK;
-
     Top10Fragment fragT10;
     DoanhThuFragment fragDT;
     DoiMatKhauFragment fragDMK;
-
     FragmentManager fm;
 
     @Override
@@ -66,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         navView = findViewById(R.id.main_nav_view);
-
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle barDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
@@ -84,12 +80,7 @@ public class MainActivity extends AppCompatActivity {
         Drawable buttonBackground = getResources().getDrawable(R.drawable.ic_gio_hang);
         customView.setBackground(buttonBackground);
         toolbar.addView(customView);
-        customView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
-            }
-        });
+        customView.setOnClickListener(v -> Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show());
 
         fragTC = new TrangChuFragment();
         fragDM = new QuanLyDonMuaFragment();
@@ -145,65 +136,53 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.trang_chu) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragTC).commit();
-                    setTitle("Trang chủ");
-                } else if (item.getItemId() == R.id.quan_ly_don_mua) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragDM).commit();
-                    setTitle("Quản lý đơn hàng mua");
-                } else if (item.getItemId() == R.id.giai_thuong) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragGT).commit();
-                    setTitle("Giải thưởng");
-                } else if (item.getItemId() == R.id.thong_tin_ca_nhan) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragTTCN).commit();
-                    setTitle("Thông tin cá nhân");
-                } else if (item.getItemId() == R.id.quan_ly_laptop) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragQLL).commit();
-                    setTitle("Quản lý laptop");
-                } else if (item.getItemId() == R.id.quan_ly_don_ban) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragDB).commit();
-                    setTitle("Quản lý đơn hàng bán");
-                } else if (item.getItemId() == R.id.them_tai_khoan) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragTTK).commit();
-                    setTitle("Thêm tài khoản");
-                } else if (item.getItemId() == R.id.top10) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragT10).commit();
-                    setTitle("Thống kê top 10");
-                } else if (item.getItemId() == R.id.doanhthu) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragDT).commit();
-                    setTitle("Thống kê doanh thu");
-                } else if (item.getItemId() == R.id.change_password) {
-                    fm.beginTransaction().replace(R.id.fragment_container_view, fragDMK).commit();
-                    setTitle("Đổi mật khẩu");
-                } else if (item.getItemId() == R.id.logout) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                    alert.setTitle("Xác nhận đăng xuất !");
-                    alert.setMessage("Bạn có muốn đăng xuất ?");
-                    alert.setCancelable(false);
-                    alert.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    });
-                    alert.setNegativeButton("Không đồng ý", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(MainActivity.this, "Hủy", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    AlertDialog alertDialog = alert.create();
-                    alertDialog.show();
-                }
-                drawerLayout.close();
-                return true;
+        navView.setNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.trang_chu) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragTC).commit();
+                setTitle("Trang chủ");
+            } else if (item.getItemId() == R.id.quan_ly_don_mua) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragDM).commit();
+                setTitle("Quản lý đơn hàng mua");
+            } else if (item.getItemId() == R.id.giai_thuong) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragGT).commit();
+                setTitle("Giải thưởng");
+            } else if (item.getItemId() == R.id.thong_tin_ca_nhan) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragTTCN).commit();
+                setTitle("Thông tin cá nhân");
+            } else if (item.getItemId() == R.id.quan_ly_laptop) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragQLL).commit();
+                setTitle("Quản lý laptop");
+            } else if (item.getItemId() == R.id.quan_ly_don_ban) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragDB).commit();
+                setTitle("Quản lý đơn hàng bán");
+            } else if (item.getItemId() == R.id.them_tai_khoan) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragTTK).commit();
+                setTitle("Thêm tài khoản");
+            } else if (item.getItemId() == R.id.top10) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragT10).commit();
+                setTitle("Thống kê top 10");
+            } else if (item.getItemId() == R.id.doanhthu) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragDT).commit();
+                setTitle("Thống kê doanh thu");
+            } else if (item.getItemId() == R.id.change_password) {
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragDMK).commit();
+                setTitle("Đổi mật khẩu");
+            } else if (item.getItemId() == R.id.logout) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setTitle("Xác nhận đăng xuất !");
+                alert.setMessage("Bạn có muốn đăng xuất ?");
+                alert.setCancelable(false);
+                alert.setPositiveButton("Đồng ý", (arg0, arg1) -> {
+                    Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+                alert.setNegativeButton("Không đồng ý", (dialog, which) -> Toast.makeText(MainActivity.this, "Hủy", Toast.LENGTH_SHORT).show());
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
             }
+            drawerLayout.close();
+            return true;
         });
     }
     private int dpToPx(int dp) {

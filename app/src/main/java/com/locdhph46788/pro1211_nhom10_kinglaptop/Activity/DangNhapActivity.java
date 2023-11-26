@@ -35,45 +35,36 @@ public class DangNhapActivity extends AppCompatActivity {
 
         nguoiDungDAO = new NguoiDungDAO(this);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = edtUsername.getText().toString();
-                String password = edtPassword.getText().toString();
-                if (username.equals("")) {
-                    Toast.makeText(DangNhapActivity.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
-                } else if (password.equals("")) {
-                    Toast.makeText(DangNhapActivity.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
-                } else if (!nguoiDungDAO.checkLogin(username, password)) {
-                    Toast.makeText(DangNhapActivity.this, "Tài khoản hoặc mật khẩu không chính xác!", Toast.LENGTH_SHORT).show();
-                } else {
-                    SharedPreferences sharedPreferences = getSharedPreferences("NguoiDung", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("taiKhoan", username);
-                    editor.putString("matKhau", password);
-                    editor.commit();
-                    Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DangKyActivity.class);
+        btnLogin.setOnClickListener(v -> {
+            String username = edtUsername.getText().toString();
+            String password = edtPassword.getText().toString();
+            if (username.equals("")) {
+                Toast.makeText(DangNhapActivity.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+            } else if (password.equals("")) {
+                Toast.makeText(DangNhapActivity.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
+            } else if (!nguoiDungDAO.checkLogin(username, password)) {
+                Toast.makeText(DangNhapActivity.this, "Tài khoản hoặc mật khẩu không chính xác!", Toast.LENGTH_SHORT).show();
+            } else {
+                SharedPreferences sharedPreferences = getSharedPreferences("NguoiDung", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("taiKhoan", username);
+                editor.putString("matKhau", password);
+                editor.commit();
+                Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), QuenMatKhauActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        btnRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), DangKyActivity.class);
+            startActivity(intent);
+            finish();
+        });
+        tvForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), QuenMatKhauActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
