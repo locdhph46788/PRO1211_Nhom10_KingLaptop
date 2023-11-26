@@ -41,7 +41,7 @@ public class DangNhapActivity extends AppCompatActivity {
                 String username = edtUsername.getText().toString();
                 String password = edtPassword.getText().toString();
                 if (username.equals("")) {
-                    Toast.makeText(DangNhapActivity.this, "Vui lòng nhập tài khoản", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DangNhapActivity.this, "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
                 } else if (password.equals("")) {
                     Toast.makeText(DangNhapActivity.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
                 } else if (!nguoiDungDAO.checkLogin(username, password)) {
@@ -76,4 +76,6 @@ public class DangNhapActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
