@@ -73,6 +73,7 @@ public class TrangChuFragment extends Fragment {
         handler.postDelayed(runnable, delay);
         return view;
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -85,6 +86,7 @@ public class TrangChuFragment extends Fragment {
         rcvLaptop.setLayoutManager(linearLayoutManager);
         rcvLaptop.setAdapter(laptopAdapter);
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,8 @@ public class QuenMatKhauActivity extends AppCompatActivity {
                     alert.setCancelable(false);
                     TextView tvUsername = view.findViewById(R.id.tv_username);
                     tvUsername.setText(username);
+                    LinearLayout layout = view.findViewById(R.id.ll_old_password);
+                    layout.setVisibility(View.GONE);
                     EditText edtPassword = view.findViewById(R.id.edt_password);
                     EditText edtRePassword = view.findViewById(R.id.edt_repassword);
                     Button btnUpdate = view.findViewById(R.id.btn_update);
