@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.locdhph46788.pro1211_nhom10_kinglaptop.Adapter.LaptopAdapter;
+import com.locdhph46788.pro1211_nhom10_kinglaptop.Adapter.QuanLyLaptopAdapter;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.DAO.LaptopDAO;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Model.Laptop;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.R;
@@ -27,9 +26,9 @@ import java.util.List;
 
 public class QuanLyLaptopFragment extends Fragment {
     FloatingActionButton fAB;
-    RecyclerView rcvLaptop;
+    RecyclerView rcvQLLaptop;
     LaptopDAO laptopDAO;
-    LaptopAdapter laptopAdapter;
+    QuanLyLaptopAdapter quanLyLaptopAdapter;
     List<Laptop> listLaptop;
 
 
@@ -43,14 +42,14 @@ public class QuanLyLaptopFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        rcvLaptop = view.findViewById(R.id.rcv_laptop);
+        rcvQLLaptop = view.findViewById(R.id.rcv_quan_ly_laptop);
         laptopDAO = new LaptopDAO(getContext());
         listLaptop = laptopDAO.getAllLaptop();
-        laptopAdapter = new LaptopAdapter(getContext(), listLaptop, laptopDAO);
+        quanLyLaptopAdapter = new QuanLyLaptopAdapter(getContext(), listLaptop, laptopDAO);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        rcvLaptop.setLayoutManager(linearLayoutManager);
-        rcvLaptop.setAdapter(laptopAdapter);
+        rcvQLLaptop.setLayoutManager(linearLayoutManager);
+        rcvQLLaptop.setAdapter(quanLyLaptopAdapter);
         fAB = view.findViewById(R.id.fab_add);
         fAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +102,7 @@ public class QuanLyLaptopFragment extends Fragment {
                         Toast.makeText(getContext(), "Thêm thành công " + id, Toast.LENGTH_SHORT).show();
                         listLaptop.clear();
                         listLaptop.addAll(laptopDAO.getAllLaptop());
-                        laptopAdapter.notifyDataSetChanged();
+                        quanLyLaptopAdapter.notifyDataSetChanged();
                         alertDialog.dismiss();
                     } else {
                         Toast.makeText(getContext(), "Không thêm được", Toast.LENGTH_SHORT).show();

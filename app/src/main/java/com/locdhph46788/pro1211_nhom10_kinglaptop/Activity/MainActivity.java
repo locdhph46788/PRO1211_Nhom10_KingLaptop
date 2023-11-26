@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navView;
-
     TrangChuFragment fragTC;
     QuanLyDonMuaFragment fragDM;
     GiaiThuongFragment fragGT;
@@ -207,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private int dpToPx(int dp) {
         float density = getResources().getDisplayMetrics().density;
         return Math.round(dp * density);

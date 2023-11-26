@@ -9,9 +9,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Adapter.BannerAdsAdapter;
+import com.locdhph46788.pro1211_nhom10_kinglaptop.Adapter.LaptopAdapter;
+import com.locdhph46788.pro1211_nhom10_kinglaptop.Adapter.QuanLyLaptopAdapter;
+import com.locdhph46788.pro1211_nhom10_kinglaptop.DAO.LaptopDAO;
+import com.locdhph46788.pro1211_nhom10_kinglaptop.Model.Laptop;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.R;
 
 import java.util.ArrayList;
@@ -19,16 +25,21 @@ import java.util.List;
 
 
 public class TrangChuFragment extends Fragment {
-     ViewPager viewPager;
-     BannerAdsAdapter baAdapter;
-     List<Integer> imageList;
+    ViewPager viewPager;
+    BannerAdsAdapter baAdapter;
+    List<Integer> imageList;
 
-     Handler handler;
-     Runnable runnable;
-     int delay = 2000;
+    Handler handler;
+    Runnable runnable;
+    int delay = 2000;
+
+    RecyclerView rcvLaptop;
+    LaptopDAO laptopDAO;
+    LaptopAdapter laptopAdapter;
+    List<Laptop> listLaptop;
 
     public TrangChuFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -62,11 +73,17 @@ public class TrangChuFragment extends Fragment {
         handler.postDelayed(runnable, delay);
         return view;
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        rcvLaptop = view.findViewById(R.id.rcv_laptop);
+        laptopDAO = new LaptopDAO(getContext());
+        listLaptop = laptopDAO.getAllLaptop();
+        laptopAdapter = new LaptopAdapter(getContext(), listLaptop, laptopDAO);
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rcvLaptop.setLayoutManager(linearLayoutManager);
+        rcvLaptop.setAdapter(laptopAdapter);
     }
     @Override
     public void onDestroyView() {
