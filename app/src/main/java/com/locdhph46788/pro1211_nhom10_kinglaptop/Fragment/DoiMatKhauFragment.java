@@ -2,6 +2,7 @@ package com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.locdhph46788.pro1211_nhom10_kinglaptop.Activity.DangKyActivity;
+import com.locdhph46788.pro1211_nhom10_kinglaptop.Activity.DangNhapActivity;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.DAO.NguoiDungDAO;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Model.NguoiDung;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.R;
@@ -84,6 +87,7 @@ public class DoiMatKhauFragment extends Fragment {
                         } else {
                             Toast.makeText(getContext(), "Mật khẩu cũ chính xác ! Mời bạn nhập mật khẩu mới", Toast.LENGTH_SHORT).show();
                             edtOldPassword.setKeyListener(null);
+                            tvCheck.setVisibility(View.GONE);
                             edtNewPassword.setVisibility(View.VISIBLE);
                             edtNewRePassword.setVisibility(View.VISIBLE);
                             btnUpdate.setVisibility(View.VISIBLE);
@@ -132,5 +136,4 @@ public class DoiMatKhauFragment extends Fragment {
             }
         });
     }
-
 }

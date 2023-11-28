@@ -4,12 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/doanhthu" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thống kê doanh thu"
-        android:textSize="50dp" />
+        android:layout_gravity="start"
+        android:text="Từ ngày:"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edt_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:editable="false"
+        android:hint="Chọn ngày bắt đầu" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="Đến ngày:"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edt_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:editable="false"
+        android:hint="Chọn ngày kết thúc" />
+
+    <Button
+        android:id="@+id/btn_thongke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF5722"
+        android:text="Thống kê" />
+
+    <TextView
+        android:id="@+id/tv_tien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="$$$"
+        android:textColor="#FF5722"
+        android:textSize="40sp" />
 </LinearLayout>

@@ -51,12 +51,7 @@ public class QuanLyLaptopFragment extends Fragment {
         rcvQLLaptop.setLayoutManager(linearLayoutManager);
         rcvQLLaptop.setAdapter(quanLyLaptopAdapter);
         fAB = view.findViewById(R.id.fab_add);
-        fAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogAdd();
-            }
-        });
+        fAB.setOnClickListener(v -> DialogAdd());
 
     }
 
@@ -75,38 +70,35 @@ public class QuanLyLaptopFragment extends Fragment {
 
         Button btnAdd = view.findViewById(R.id.btn_add);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String thuongHieu = edtThuongHieu.getText().toString();
-                String tenLaptop = edtTenLaptop.getText().toString();
-                String sNamSanXuat = edtNamSanXuat.getText().toString();
-                int namSanXuat = Integer.parseInt(sNamSanXuat);
-                String sGiaBan = edtGiaBan.getText().toString();
-                int giaBan = Integer.parseInt(sGiaBan);
-                String moTa = edtMoTa.getText().toString();
-                if (thuongHieu.equals("")) {
-                    Toast.makeText(getContext(), "Vui lòng nhập thương hiệu", Toast.LENGTH_SHORT).show();
-                } else if (tenLaptop.equals("")) {
-                    Toast.makeText(getContext(), "Vui lòng nhập tên laptop", Toast.LENGTH_SHORT).show();
-                } else if (sNamSanXuat.equals("")) {
-                    Toast.makeText(getContext(), "Vui lòng nhập năm sản xuất", Toast.LENGTH_SHORT).show();
-                } else if (sGiaBan.equals("")) {
-                    Toast.makeText(getContext(), "Vui lòng nhập giá bán", Toast.LENGTH_SHORT).show();
-                } else if (moTa.equals("")) {
-                    Toast.makeText(getContext(), "Vui lòng nhập mô tả", Toast.LENGTH_SHORT).show();
+        btnAdd.setOnClickListener(v -> {
+            String thuongHieu = edtThuongHieu.getText().toString();
+            String tenLaptop = edtTenLaptop.getText().toString();
+            String sNamSanXuat = edtNamSanXuat.getText().toString();
+            int namSanXuat = Integer.parseInt(sNamSanXuat);
+            String sGiaBan = edtGiaBan.getText().toString();
+            int giaBan = Integer.parseInt(sGiaBan);
+            String moTa = edtMoTa.getText().toString();
+            if (thuongHieu.equals("")) {
+                Toast.makeText(getContext(), "Vui lòng nhập thương hiệu", Toast.LENGTH_SHORT).show();
+            } else if (tenLaptop.equals("")) {
+                Toast.makeText(getContext(), "Vui lòng nhập tên laptop", Toast.LENGTH_SHORT).show();
+            } else if (sNamSanXuat.equals("")) {
+                Toast.makeText(getContext(), "Vui lòng nhập năm sản xuất", Toast.LENGTH_SHORT).show();
+            } else if (sGiaBan.equals("")) {
+                Toast.makeText(getContext(), "Vui lòng nhập giá bán", Toast.LENGTH_SHORT).show();
+            } else if (moTa.equals("")) {
+                Toast.makeText(getContext(), "Vui lòng nhập mô tả", Toast.LENGTH_SHORT).show();
+            } else {
+                Laptop objLaptop = new Laptop(tenLaptop, thuongHieu, namSanXuat, giaBan, moTa);
+                long id = laptopDAO.addLaptop(objLaptop);
+                if (id > 0) {
+                    Toast.makeText(getContext(), "Thêm thành công " + id, Toast.LENGTH_SHORT).show();
+                    listLaptop.clear();
+                    listLaptop.addAll(laptopDAO.getAllLaptop());
+                    quanLyLaptopAdapter.notifyDataSetChanged();
+                    alertDialog.dismiss();
                 } else {
-                    Laptop objLaptop = new Laptop(tenLaptop, thuongHieu, namSanXuat, giaBan, moTa);
-                    long id = laptopDAO.addLaptop(objLaptop);
-                    if (id > 0) {
-                        Toast.makeText(getContext(), "Thêm thành công " + id, Toast.LENGTH_SHORT).show();
-                        listLaptop.clear();
-                        listLaptop.addAll(laptopDAO.getAllLaptop());
-                        quanLyLaptopAdapter.notifyDataSetChanged();
-                        alertDialog.dismiss();
-                    } else {
-                        Toast.makeText(getContext(), "Không thêm được", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getContext(), "Không thêm được", Toast.LENGTH_SHORT).show();
                 }
             }
         });
