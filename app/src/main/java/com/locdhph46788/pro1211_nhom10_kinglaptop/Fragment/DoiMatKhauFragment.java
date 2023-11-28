@@ -84,6 +84,7 @@ public class DoiMatKhauFragment extends Fragment {
                         } else {
                             Toast.makeText(getContext(), "Mật khẩu cũ chính xác ! Mời bạn nhập mật khẩu mới", Toast.LENGTH_SHORT).show();
                             edtOldPassword.setKeyListener(null);
+                            tvCheck.setVisibility(View.GONE);
                             edtNewPassword.setVisibility(View.VISIBLE);
                             edtNewRePassword.setVisibility(View.VISIBLE);
                             btnUpdate.setVisibility(View.VISIBLE);
