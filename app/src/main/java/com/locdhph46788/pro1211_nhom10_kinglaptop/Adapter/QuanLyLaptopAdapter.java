@@ -46,7 +46,7 @@ public class QuanLyLaptopAdapter extends RecyclerView.Adapter<QuanLyLaptopAdapte
         holder.tvThuongHieu.setText(listLaptop.get(position).getThuongHieu());
         holder.tvTenLaptop.setText(listLaptop.get(position).getTenLaptop());
         holder.tvNamSanXuat.setText(listLaptop.get(position).getNamSanXuat() + "");
-        holder.tvGiaBan.setText(listLaptop.get(position).getGiaBan() + "");
+        holder.tvGiaBan.setText(listLaptop.get(position).getGiaBan() + "$");
         holder.tvMoTa.setText(listLaptop.get(position).getMoTa());
         holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override

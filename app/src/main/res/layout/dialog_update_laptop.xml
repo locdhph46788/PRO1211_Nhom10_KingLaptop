@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập thương hiệu" />
+
     <EditText
         android:id="@+id/edt_ten_laptop"
         android:layout_width="match_parent"
@@ -32,14 +33,16 @@
         android:id="@+id/edt_nam_san_xuat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập năm sản xuất" />
+        android:hint="Nhập năm sản xuất"
+        android:inputType="number" />
 
 
     <EditText
         android:id="@+id/edt_gia_ban"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập giá bán" />
+        android:hint="Nhập giá bán"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/edt_mo_ta"

@@ -104,7 +104,7 @@ public class DoanhThuFragment extends Fragment {
 //                String start = edtStart.getText().toString();
 //                String end = edtEnd.getText().toString();
 //                int doanhThu = pMDAO.getDoanhThu(start, end);
-//                tvTien.setText(doanhThu + " VND");
+//                tvTien.setText(doanhThu + " $");
 
             }
         });

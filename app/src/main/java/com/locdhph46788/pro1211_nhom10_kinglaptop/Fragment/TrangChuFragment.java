@@ -5,9 +5,11 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +39,8 @@ public class TrangChuFragment extends Fragment {
     LaptopDAO laptopDAO;
     LaptopAdapter laptopAdapter;
     List<Laptop> listLaptop;
+
+    SearchView sVLaptop;
 
     public TrangChuFragment() {
 
@@ -81,10 +85,26 @@ public class TrangChuFragment extends Fragment {
         laptopDAO = new LaptopDAO(getContext());
         listLaptop = laptopDAO.getAllLaptop();
         laptopAdapter = new LaptopAdapter(getContext(), listLaptop, laptopDAO);
+        setHasOptionsMenu(true);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvLaptop.setLayoutManager(linearLayoutManager);
         rcvLaptop.setAdapter(laptopAdapter);
+
+        sVLaptop = view.findViewById(R.id.sv_laptop);
+        sVLaptop.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                laptopAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                laptopAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     @Override

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/white"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="20dp"
+    android:layout_margin="5dp">
 
     <ImageView
         android:id="@+id/iv_laptop"
@@ -81,7 +82,7 @@
                 android:id="@+id/tv_gia_ban"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5000000" />
+                android:text="50 $" />
         </LinearLayout>
 
         <LinearLayout

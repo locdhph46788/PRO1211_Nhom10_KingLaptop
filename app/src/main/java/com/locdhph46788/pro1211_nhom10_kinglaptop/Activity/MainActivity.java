@@ -1,23 +1,20 @@
 package com.locdhph46788.pro1211_nhom10_kinglaptop.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,12 +23,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.DAO.NguoiDungDAO;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.DoanhThuFragment;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.DoiMatKhauFragment;
-import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.GiaiThuongFragment;
+import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.GioHangFragment;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.QuanLyDonBanFragment;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.QuanLyDonMuaFragment;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.QuanLyLaptopFragment;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.ThemTaiKhoanFragment;
-import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.ThongTinCaNhanFragment;
+import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.ThongTinNguoiDungFragment;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.Top10Fragment;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Fragment.TrangChuFragment;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Model.NguoiDung;
@@ -46,14 +43,15 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navView;
     TrangChuFragment fragTC;
     QuanLyDonMuaFragment fragDM;
-    GiaiThuongFragment fragGT;
-    ThongTinCaNhanFragment fragTTCN;
+    ThongTinNguoiDungFragment fragTTND;
     QuanLyLaptopFragment fragQLL;
     QuanLyDonBanFragment fragDB;
     ThemTaiKhoanFragment fragTTK;
     Top10Fragment fragT10;
     DoanhThuFragment fragDT;
     DoiMatKhauFragment fragDMK;
+
+    GioHangFragment fragGH;
     FragmentManager fm;
 
     @Override
@@ -63,6 +61,18 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         navView = findViewById(R.id.main_nav_view);
+
+        fragTC = new TrangChuFragment();
+        fragDM = new QuanLyDonMuaFragment();
+        fragTTND = new ThongTinNguoiDungFragment();
+        fragQLL = new QuanLyLaptopFragment();
+        fragDB = new QuanLyDonBanFragment();
+        fragTTK = new ThemTaiKhoanFragment();
+        fragT10 = new Top10Fragment();
+        fragDT = new DoanhThuFragment();
+        fragDMK = new DoiMatKhauFragment();
+        fragGH = new GioHangFragment();
+        fm = getSupportFragmentManager();
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle barDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
@@ -80,19 +90,16 @@ public class MainActivity extends AppCompatActivity {
         Drawable buttonBackground = getResources().getDrawable(R.drawable.ic_gio_hang);
         customView.setBackground(buttonBackground);
         toolbar.addView(customView);
-        customView.setOnClickListener(v -> Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show());
-
-        fragTC = new TrangChuFragment();
-        fragDM = new QuanLyDonMuaFragment();
-        fragGT = new GiaiThuongFragment();
-        fragTTCN = new ThongTinCaNhanFragment();
-        fragQLL = new QuanLyLaptopFragment();
-        fragDB = new QuanLyDonBanFragment();
-        fragTTK = new ThemTaiKhoanFragment();
-        fragT10 = new Top10Fragment();
-        fragDT = new DoanhThuFragment();
-        fragDMK = new DoiMatKhauFragment();
-        fm = getSupportFragmentManager();
+        customView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = (MainActivity.this).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_view, fragGH);
+                transaction.addToBackStack(null);
+                setTitle("Giỏ hàng");
+                transaction.commit();
+            }
+        });
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("NguoiDung", Context.MODE_PRIVATE);
         String taiKhoan = sharedPreferences.getString("taiKhoan", "");
@@ -119,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
             navView.getMenu().findItem(R.id.gio_hang).setVisible(false);
             navView.getMenu().findItem(R.id.trang_chu).setVisible(false);
             navView.getMenu().findItem(R.id.quan_ly_don_mua).setVisible(false);
-            navView.getMenu().findItem(R.id.giai_thuong).setVisible(false);
             navView.getMenu().findItem(R.id.thong_tin_ca_nhan).setVisible(false);
             customView.setVisibility(View.GONE);
 
@@ -143,11 +149,8 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.quan_ly_don_mua) {
                 fm.beginTransaction().replace(R.id.fragment_container_view, fragDM).commit();
                 setTitle("Quản lý đơn hàng mua");
-            } else if (item.getItemId() == R.id.giai_thuong) {
-                fm.beginTransaction().replace(R.id.fragment_container_view, fragGT).commit();
-                setTitle("Giải thưởng");
             } else if (item.getItemId() == R.id.thong_tin_ca_nhan) {
-                fm.beginTransaction().replace(R.id.fragment_container_view, fragTTCN).commit();
+                fm.beginTransaction().replace(R.id.fragment_container_view, fragTTND).commit();
                 setTitle("Thông tin cá nhân");
             } else if (item.getItemId() == R.id.quan_ly_laptop) {
                 fm.beginTransaction().replace(R.id.fragment_container_view, fragQLL).commit();
@@ -185,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
     }
+
     private int dpToPx(int dp) {
         float density = getResources().getDisplayMetrics().density;
         return Math.round(dp * density);

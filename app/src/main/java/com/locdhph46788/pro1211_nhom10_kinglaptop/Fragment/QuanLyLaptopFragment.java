@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.Adapter.QuanLyLaptopAdapter;
 import com.locdhph46788.pro1211_nhom10_kinglaptop.DAO.LaptopDAO;
@@ -73,23 +75,21 @@ public class QuanLyLaptopFragment extends Fragment {
         btnAdd.setOnClickListener(v -> {
             String thuongHieu = edtThuongHieu.getText().toString();
             String tenLaptop = edtTenLaptop.getText().toString();
-            String sNamSanXuat = edtNamSanXuat.getText().toString();
-            int namSanXuat = Integer.parseInt(sNamSanXuat);
-            String sGiaBan = edtGiaBan.getText().toString();
-            int giaBan = Integer.parseInt(sGiaBan);
+            String namSanXuat = edtNamSanXuat.getText().toString();
+            String giaBan = edtGiaBan.getText().toString();
             String moTa = edtMoTa.getText().toString();
             if (thuongHieu.equals("")) {
                 Toast.makeText(getContext(), "Vui lòng nhập thương hiệu", Toast.LENGTH_SHORT).show();
             } else if (tenLaptop.equals("")) {
                 Toast.makeText(getContext(), "Vui lòng nhập tên laptop", Toast.LENGTH_SHORT).show();
-            } else if (sNamSanXuat.equals("")) {
+            } else if (namSanXuat.equals("")) {
                 Toast.makeText(getContext(), "Vui lòng nhập năm sản xuất", Toast.LENGTH_SHORT).show();
-            } else if (sGiaBan.equals("")) {
+            } else if (giaBan.equals("")) {
                 Toast.makeText(getContext(), "Vui lòng nhập giá bán", Toast.LENGTH_SHORT).show();
             } else if (moTa.equals("")) {
                 Toast.makeText(getContext(), "Vui lòng nhập mô tả", Toast.LENGTH_SHORT).show();
             } else {
-                Laptop objLaptop = new Laptop(tenLaptop, thuongHieu, namSanXuat, giaBan, moTa);
+                Laptop objLaptop = new Laptop(tenLaptop, thuongHieu, Integer.parseInt(namSanXuat), Integer.parseInt(giaBan), moTa);
                 long id = laptopDAO.addLaptop(objLaptop);
                 if (id > 0) {
                     Toast.makeText(getContext(), "Thêm thành công " + id, Toast.LENGTH_SHORT).show();

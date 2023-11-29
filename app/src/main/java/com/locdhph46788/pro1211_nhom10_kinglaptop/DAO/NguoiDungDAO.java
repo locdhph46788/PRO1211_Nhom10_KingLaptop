@@ -60,7 +60,7 @@ public class NguoiDungDAO {
         Cursor c = db.rawQuery("SELECT * FROM NguoiDung", null);
         if (c != null && c.getCount() > 0) {
             c.moveToFirst();
-            do { // thứ tự cột: 0-id, 1- name
+            do {
                 String taiKhoan = c.getString(0);
                 String matKhau = c.getString(1);
                 String email = c.getString(2);

@@ -109,7 +109,9 @@ public class QuenMatKhauActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
